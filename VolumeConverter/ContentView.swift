@@ -47,16 +47,22 @@ struct ContentView: View {
                 Section {
                     TextField("Amount to convert", text: $amountToConvert)
                         .keyboardType(.decimalPad)
+                }
+                Section(header: Text("From")) {
                     Picker("From", selection: $fromUnitIndex) {
                         ForEach(0..<units.count) {
                             Text(units[$0].rawValue)
                         }
                     }
+                    .pickerStyle(SegmentedPickerStyle())
+                }
+                Section(header: Text("To")) {
                     Picker("To", selection: $toUnitIndex) {
                         ForEach(0..<units.count) {
                             Text(units[$0].rawValue)
                         }
                     }
+                    .pickerStyle(SegmentedPickerStyle())
                 }
 
                 Section(header: Text("\(amountToConvert) \(units[fromUnitIndex].rawValue) in \(units[toUnitIndex].rawValue):")) {
